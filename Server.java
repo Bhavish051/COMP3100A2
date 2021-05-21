@@ -9,8 +9,7 @@ public class Server {
 	int memory;
 	int disk;
 
-	public Server(String type, String id, int limit, int bootTime, float hourlyRate, int coreCount, int memory,
-			int disk) {
+	public Server(String type, String id, int limit, int bootTime, float hourlyRate, int coreCount, int memory,int disk) {
 		this.type = type;
 		this.limit = limit;
 		this.bootTime = bootTime;
