@@ -93,31 +93,34 @@ public class Client {
 	*/
 	private String ScheduletheJob(String job, ArrayList<Server> t) {
 		String[] strSplit = job.split("\\s+");
-		for(Server s: t){		
+		for(Server s: t){	
+
 			int ReqCores = Integer.parseInt(strSplit[4].replaceAll("[^0-9]", ""));
 			int ReqMem = Integer.parseInt(strSplit[5].replaceAll("[^0-9]", ""));
 
 			if (strSplit.length > 2 && ReqCores <= s.getRemainingCores() && ReqMem <= s.getRemainingDisk()) {
+
 				s.UpdateRemainingCores(s.getRemainingCores() - ReqCores);
 				s.UpdateRemainingDisk(s.getRemainingDisk() - ReqMem);
+
 				return "SCHD " + strSplit[2] + " " + s.getType() + " " + 0 + "\n";
 				}
 	}
 	return "SCHD " + strSplit + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
 	}
+
 	//Sends all jobs to largest server 
 	/*
 	This is where it needs to be changed 
 	At this stage the client schedules all the jobs to the largest sever straightaway
 	*/
-	private String AllToLargest(String job, Server s){
-		int jobID = 0;
-		String[] strSplit = job.split("\\s+");
-		if(strSplit.length > 2)
-			return "SCHD " + strSplit[2] + " " + s.getType() + " " + jobID + "\n";
-		return "SCHD " + strSplit + " " + s.getType() + " " + jobID + "\n";
-	}
-
+	// private String AllToLargest(String job, Server s){
+	// 	int jobID = 0;
+	// 	String[] strSplit = job.split("\\s+");
+	// 	if(strSplit.length > 2)
+	// 		return "SCHD " + strSplit[2] + " " + s.getType() + " " + jobID + "\n";
+	// 	return "SCHD " + strSplit + " " + s.getType() + " " + jobID + "\n";
+	// }
 
 
 	//Finds the largest server; counts through cores until largest is found then returns largest
