@@ -97,12 +97,20 @@ public class Client {
 
 
 	//Sends all jobs to largest server 
+	/*
+	This is where it needs to be changed 
+	At this stage the client schedules all the jobs to the largest sever straightaway
+	*/
 	private String AllToLargest(String job, Server s){
 		int jobID = 0;
 		String[] strSplit = job.split("\\s+");
 		if(strSplit.length > 2)
 			return "SCHD " + strSplit[2] + " " + s.getType() + " " + jobID + "\n";
 		return "SCHD " + strSplit + " " + s.getType() + " " + jobID + "\n";
+	}
+
+	private String newScheduler(String job, Server s){
+		return "Bye";
 	}
 
 	//Finds the largest server; counts through cores until largest is found then returns largest
