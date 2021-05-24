@@ -49,22 +49,14 @@ public class Client {
 			connected = false;
 		}
 		
-		//Job scheduler to largest server 
+		//Job scheduling happens here
 		while(!msg.contains("NONE")){
-			// if(msg.contains("JOBN"))
-			// {
-			// 	sendMessage("GETS Capable");
-			// 	msg = readMessage();
-			// }
 			if (msg.contains("JOBN")){
-				// sendMessage("REDY\n");
-				// msg = readMessage();
 				sendMessage("GETS Capable" + " " +t.get(largestServer).getCores() + " " + t.get(largestServer).getMemory() + " " + t.get(largestServer).getDisk() + "\n" ) ;
 				msg = readGetsCapable();
 				sendMessage("OK");
 			} else {
-	
-				sendMessage(AllToLargest(msg, t.get(largestServer)));
+				sendMessage(ScheduletheJob(msg, t ));
 				msg = readMessage();
 				sendMessage("REDY");
 
@@ -94,8 +86,18 @@ public class Client {
 		System.exit(1);
 	}
 	
-
-
+	/*
+	NEXT FIT 
+	*/
+	private String ScheduletheJob(String job, ArrayList<Server> t) {
+		String[] strSplit = job.split("\\s+");
+		for(Server s: t){		
+			if (strSplit.length > 2) {
+				return "SCHD " + strSplit[2] + " " + s.getType() + " " + 0 + "\n";
+		}
+	}
+	return "SCHD " + strSplit + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
+	}
 	//Sends all jobs to largest server 
 	/*
 	This is where it needs to be changed 
@@ -109,9 +111,7 @@ public class Client {
 		return "SCHD " + strSplit + " " + s.getType() + " " + jobID + "\n";
 	}
 
-	private String newScheduler(String job, Server s){
-		return "Bye";
-	}
+
 
 	//Finds the largest server; counts through cores until largest is found then returns largest
 	//Only Updates the largest server if the number of cores is different

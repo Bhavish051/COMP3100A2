@@ -8,6 +8,8 @@ public class Server {
 	int coreCount;
 	int memory;
 	int disk;
+	int RemainingCores;
+	int RemainingDisk;
 
 	public Server(String type, String id, int limit, int bootTime, float hourlyRate, int coreCount, int memory,int disk) {
 		this.type = type;
@@ -18,6 +20,9 @@ public class Server {
 		this.memory = memory;
 		this.disk = disk;
 		this.id = id;
+		// When the server is added to the list in the beginning of the program all the resources from it are available and will be updated once the job scheduling completes
+		this.RemainingCores = this.coreCount;
+		this.RemainingDisk = this.disk;
 	}
 
 	// id: ID of server
@@ -57,6 +62,22 @@ public class Server {
 	// disk: disk space
 	public int getDisk() {
 		return this.disk;
+	}
+
+	public int getRemainingCores(){
+		return RemainingCores;
+	}
+
+	public int getRemainingDisk() {
+		return RemainingDisk;
+	}
+
+	public void UpdateRemainingCores(int RemainingCores){
+		this.RemainingCores = RemainingCores;
+	}
+
+	public void UpdateRemainingDisk(int RemainingDisk){
+		this.RemainingDisk = RemainingDisk;
 	}
 
 	public void printData() {
