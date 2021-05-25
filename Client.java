@@ -95,9 +95,11 @@ public class Client {
 		String[] strSplit = job.split("\\s+");
 		for(Server s: t){	
 
-			int ReqCores = Integer.parseInt(strSplit[4].replaceAll("[^0-9]", ""));
-			int ReqMem = Integer.parseInt(strSplit[5].replaceAll("[^0-9]", ""));
-
+			if(strSplit.length <=6)
+			{
+				int ReqCores = Integer.parseInt(strSplit[4].replaceAll("[^0-9]", ""));
+				int ReqMem = Integer.parseInt(strSplit[5].replaceAll("[^0-9]", ""));
+		
 			if (strSplit.length > 2 && ReqCores <= s.getRemainingCores() && ReqMem <= s.getRemainingDisk()) {
 
 				s.UpdateRemainingCores(s.getRemainingCores() - ReqCores);
@@ -105,6 +107,7 @@ public class Client {
 
 				return "SCHD " + strSplit[2] + " " + s.getType() + " " + 0 + "\n";
 				}
+			}
 	}
 	return "SCHD " + strSplit + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
 	}
