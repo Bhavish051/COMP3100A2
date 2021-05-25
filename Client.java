@@ -95,7 +95,7 @@ public class Client {
 		String[] strSplit = job.split("\\s+");
 		for(Server s: t){	
 
-			if(strSplit.length <=6)
+			if(strSplit.length <= 4)
 			{
 				int ReqCores = Integer.parseInt(strSplit[4].replaceAll("[^0-9]", ""));
 				int ReqMem = Integer.parseInt(strSplit[5].replaceAll("[^0-9]", ""));
