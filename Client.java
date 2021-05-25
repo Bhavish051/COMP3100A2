@@ -109,8 +109,8 @@ public class Client {
 				}
 			}
 	}
-	// return "SCHD " + strSplit + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
-	return "OK";
+	return "SCHD " + strSplit[2] + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
+	//return "OK";
 	}
 
 	//Sends all jobs to largest server 
