@@ -19,4 +19,4 @@ The basic algorithm first fit basically has the servers sorted in a list in the 
 # CONCLUSION
 
 # REFERENCES
-* MAKE GIT PUBLIC AND ADD IT HERE
+https://github.com/Bhavish051/COMP3100A2.git 
