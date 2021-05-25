@@ -105,7 +105,7 @@ public class Client {
 				s.UpdateRemainingCores(s.getRemainingCores() - ReqCores);
 				s.UpdateRemainingDisk(s.getRemainingDisk() - ReqMem);
 
-				return "SCHD " + strSplit[2] + " " + s.getType() + " " + 0 + "\n";
+				return "SCHD " + strSplit[2].toString() + " " + s.getType() + " " + 0 + "\n";
 				}
 			}
 	}
