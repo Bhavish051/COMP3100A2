@@ -109,7 +109,7 @@ public class Client {
 				}
 			}
 	}
-	return "SCHD " + strSplit[0] + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
+	return "SCHD " + strSplit + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
 	//return "OK";
 	}
 
