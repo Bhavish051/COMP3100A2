@@ -16,7 +16,8 @@ The basic algorithm first fit basically has the servers sorted in a list in the 
 * In this case we have added 2 additional fields in Server class which are the "remainingDisk" and "remainingCore" which at any point represent the number of cores free and the disk capacity free of the server itself.
 * After this the entire list of servers is passed to the scheduling function along with the job itself. So the scheduling method loops through the list of servers and keeps compairing the resources available to the resources required by the job that was passed and there are enough of them the job gets scheduled to that particular even if it busy at that point cause it will be able to run multiple jobs this time.
 # EVALUATION
-
+* In comparison to first fit algorithm this algorithm aims to reduce the waiting time of all the jobs submitted.
+* Also in comparison to all to largest this would significantly improve the waiting time of the jobs submitted as they wont have to wait for the largest server to free up and can use partial server capacity so different jobs can share servers independent of each other.
 # CONCLUSION
 
 # REFERENCES
