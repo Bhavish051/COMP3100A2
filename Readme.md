@@ -7,8 +7,9 @@ This cloud job scheduler aims to overcome the limitations of the basic job sched
 # PROBLEM DEFINITION
 The basic algorithm first fit basically has the servers sorted in a list in the order of their resources or so called processing capacity. And after that list is retrieved it starts taking jobs one by one and starts assigning them in the order of the servers in the list only scheduling one job on one server. This algorithm called Next Fit works on the specific drawback of FF that multiple jobs can be scheduled to a single server.
 # ALGORITHM DESCRIPTION
-* The core functionality of this algorithm is similar to first fit along with a few other parameters to overcome its limiation of one job per server. 
-
+* The core functionality of this algorithm is similar to first fit along with a few other parameters to overcome its limitation of one job per server. 
+* This algorithm takes into account the remaining resources inside a server at any point to allocate the remaining part of the server to the job submitted so as to not block the entire server with just one job.
+* This algorithm still goes one by one in the order of the resouce capacity of the servers from the list. 
 
 # IMPLEMENTATION DETAILS
 * At the start the program reads the system.xml file to get the list of servers in the order of their resources which is their number of cores and the disk capacity.

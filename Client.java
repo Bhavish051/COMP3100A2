@@ -35,6 +35,9 @@ public class Client {
 		ArrayList<Server> t = new ArrayList<Server>();
 		t = readXML("ds-system.xml");
 		
+		// HashSet<> // Hashmap for job deets
+		
+
 		//Finds index of largest server; most cores
 		int largestServer = findLargestServer(t);
 		
@@ -55,7 +58,10 @@ public class Client {
 				sendMessage("GETS Capable" + " " +t.get(largestServer).getCores() + " " + t.get(largestServer).getMemory() + " " + t.get(largestServer).getDisk() + "\n" ) ;
 				msg = readGetsCapable();
 				sendMessage("OK");
-			} else {
+			} else if(msg.contains("JCPL")){
+				sendMessage(updateTheServer(msg, t));
+			} 
+			else {
 				sendMessage(ScheduletheJob(msg, t ));
 				msg = readMessage();
 				sendMessage("REDY");
@@ -86,6 +92,19 @@ public class Client {
 		System.exit(1);
 	}
 	
+	private String updateTheServer(String msg, ArrayList<Server> t) {
+
+		String[] strSplit = msg.split("\\s+");
+
+		for(Server s: t){
+			if(s.getType().equals(strSplit[3]))
+			{
+				s.UpdateRemainingCores(s.getRemainingCores() + );
+				s.UpdateRemainingDisk(RemainingDisk);
+			}
+		}
+		return "REDY";
+	}
 	/*
 	NEXT FIT 
 	4 is core
@@ -108,23 +127,12 @@ public class Client {
 				return "SCHD " + strSplit[2] + " " + s.getType() + " " + 0 + "\n";
 				}
 			}
+		
 	}
-	return "SCHD " + strSplit + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
-	//return "OK";
+	//return "SCHD " + strSplit + " " + t.get(t.size()-1).getType() + " " + 0 + "\n";
+	return "All Servers Busy\n";
+	//return "OK\n";
 	}
-
-	//Sends all jobs to largest server 
-	/*
-	This is where it needs to be changed 
-	At this stage the client schedules all the jobs to the largest sever straightaway
-	*/
-	// private String AllToLargest(String job, Server s){
-	// 	int jobID = 0;
-	// 	String[] strSplit = job.split("\\s+");
-	// 	if(strSplit.length > 2)
-	// 		return "SCHD " + strSplit[2] + " " + s.getType() + " " + jobID + "\n";
-	// 	return "SCHD " + strSplit + " " + s.getType() + " " + jobID + "\n";
-	// }
 
 
 	//Finds the largest server; counts through cores until largest is found then returns largest
