@@ -68,14 +68,13 @@ public class Client {
 				sendMessage(updateTheServer(msg, t));
 			} 
 			else {
-				sendMessage(ScheduletheJob(msg, t ));
+				sendMessage(ScheduletheJob(msg, t , i));
 				msg = readMessage();
 				sendMessage("REDY");
 
 				msg = readMessage();
 			}
-				Jobs[i][0] = 
-				Jobs[i][1] =
+				i++;
 				
 	}
 	
@@ -95,8 +94,8 @@ public class Client {
 				out.close();
 				socket.close();
 			}	
-		} catch (IOException i) {
-			System.out.println(i);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 		System.exit(1);
 	}
@@ -108,8 +107,8 @@ public class Client {
 		for(Server s: t){
 			if(s.getType().equals(strSplit[3]))
 			{
-				s.UpdateRemainingCores(s.getRemainingCores() + );
-				s.UpdateRemainingDisk(s.getRemainingDisk() + );
+				s.UpdateRemainingCores(s.getRemainingCores());
+				s.UpdateRemainingDisk(s.getRemainingDisk() );
 			}
 		}
 		return "REDY";
@@ -119,7 +118,7 @@ public class Client {
 	4 is core
 	5 is mem
 	*/
-	private String ScheduletheJob(String job, ArrayList<Server> t) {
+	private String ScheduletheJob(String job, ArrayList<Server> t, int i) {
 		String[] strSplit = job.split("\\s+");
 		for(Server s: t){	
 
@@ -133,7 +132,11 @@ public class Client {
 				s.UpdateRemainingCores(s.getRemainingCores() - ReqCores);
 				s.UpdateRemainingDisk(s.getRemainingDisk() - ReqMem);
 
+				Jobs[i][0] = s.getRemainingCores();
+				Jobs[i][1] = s.getRemainingDisk();
+
 				return "SCHD " + strSplit[2] + " " + s.getType() + " " + 0 + "\n";
+			
 				}
 			}
 		
