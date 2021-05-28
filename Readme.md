@@ -10,7 +10,8 @@ The basic algorithm first fit basically has the servers sorted in a list in the 
 * The core functionality of this algorithm is similar to first fit along with a few other parameters to overcome its limitation of one job per server. 
 * This algorithm takes into account the remaining resources inside a server at any point to allocate the remaining part of the server to the job submitted so as to not block the entire server with just one job.
 * This algorithm still goes one by one in the order of the resouce capacity of the servers from the list. 
-
+* When it is going through the list of all the servers one by one to check their resources for the next job if it allocates a job to a particular server it updates its remaining capacity by subtracting the remaining cores and disk from the ones required by the job that is scheduled.
+* Also when the server sends a "JCPL" message to the client indicating the completion of a job it then also updates the remaining capacity of the server by adding back the resources it previously used.
 # IMPLEMENTATION DETAILS
 * At the start the program reads the system.xml file to get the list of servers in the order of their resources which is their number of cores and the disk capacity.
 * In this case we have added 2 additional fields in Server class which are the "remainingDisk" and "remainingCore" which at any point represent the number of cores free and the disk capacity free of the server itself.
@@ -18,6 +19,7 @@ The basic algorithm first fit basically has the servers sorted in a list in the 
 # EVALUATION
 * In comparison to first fit algorithm this algorithm aims to reduce the waiting time of all the jobs submitted.
 * Also in comparison to all to largest this would significantly improve the waiting time of the jobs submitted as they wont have to wait for the largest server to free up and can use partial server capacity so different jobs can share servers independent of each other.
+
 # CONCLUSION
 
 # REFERENCES

@@ -7,6 +7,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import jdk.nashorn.internal.scripts.JO;
+
 import java.io.*;
 public class Client {
 	// Initialize socket and input output streams
@@ -14,6 +17,7 @@ public class Client {
 	private BufferedReader input = null;
 	private DataOutputStream out = null;
 	private BufferedReader in = null;
+	private int[][] Jobs;
 	// constructor to put ip address and port
 	public Client(String address, int port) throws IOException {
 		
@@ -21,6 +25,7 @@ public class Client {
 		input = new BufferedReader(new InputStreamReader(System.in));
 		out = new DataOutputStream(socket.getOutputStream());
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		Jobs = new int[100][2];
 	}
 	private void start () {
 
@@ -51,12 +56,13 @@ public class Client {
 			sendMessage("QUIT\n");
 			connected = false;
 		}
-		
+		int i = 0;
 		//Job scheduling happens here
 		while(!msg.contains("NONE")){
 			if (msg.contains("JOBN")){
 				sendMessage("GETS Capable" + " " +t.get(largestServer).getCores() + " " + t.get(largestServer).getMemory() + " " + t.get(largestServer).getDisk() + "\n" ) ;
 				msg = readGetsCapable();
+		
 				sendMessage("OK");
 			} else if(msg.contains("JCPL")){
 				sendMessage(updateTheServer(msg, t));
@@ -68,6 +74,9 @@ public class Client {
 
 				msg = readMessage();
 			}
+				Jobs[i][0] = 
+				Jobs[i][1] =
+				
 	}
 	
 		while (connected){
@@ -100,7 +109,7 @@ public class Client {
 			if(s.getType().equals(strSplit[3]))
 			{
 				s.UpdateRemainingCores(s.getRemainingCores() + );
-				s.UpdateRemainingDisk(RemainingDisk);
+				s.UpdateRemainingDisk(s.getRemainingDisk() + );
 			}
 		}
 		return "REDY";
